@@ -22,7 +22,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8090
-              name: metrics-srv-port
+              name: metrics-port
           resources:
             limits:
               memory: "1Gi"
@@ -38,5 +38,5 @@ spec:
             failureThreshold: 5
             successThreshold: 1
           env:
-            - name: REDIS_PASSWORD
-              value: 'unset'
+            - name: TFE_TOKEN
+              value: 'steve-will-replace-me'
