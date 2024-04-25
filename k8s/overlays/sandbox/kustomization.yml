@@ -1,8 +1,8 @@
 kind: Kustomization
 
 images:
-- name: slack-quiz
-  newName: 905418275981.dkr.ecr.eu-west-1.amazonaws.com/slack-quiz
+- name: tcmetrics
+  newName: 905418275981.dkr.ecr.eu-west-1.amazonaws.com/tf-metrics
   newTag: TO-BE-CHANGED
 
 resources:

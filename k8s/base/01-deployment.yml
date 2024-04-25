@@ -39,4 +39,6 @@ spec:
             successThreshold: 1
           env:
             - name: TFE_TOKEN
-              value: 'steve-will-replace-me'
+              secretKeyRef:
+                name: terraform-cloud-token
+                key: TFE_TOKEN
