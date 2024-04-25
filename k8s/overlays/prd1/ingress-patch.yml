@@ -1,8 +1,0 @@
-- op: replace
-  path: /spec/tls/0/hosts
-  value:
-    - tcmetrics.prd1.lh.metacore.net
-
-- op: replace
-  path: /spec/rules/0/host
-  value: tcmetrics.prd1.lh.metacore.net

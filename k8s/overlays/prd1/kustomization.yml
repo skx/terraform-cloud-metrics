@@ -7,13 +7,3 @@ images:
 
 resources:
 - ../../base
-
-
-patches:
-- path: ingress-patch.yml
-  target:
-    group: networking.k8s.io
-    kind: Ingress
-    name: tcmetrics-ingress
-    version: v1
-apiVersion: kustomize.config.k8s.io/v1beta1

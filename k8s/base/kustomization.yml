@@ -3,8 +3,7 @@ kind: Kustomization
 
 resources:
   - 00-namespace.yml
+  - 00-secrets.yml
   - 01-deployment.yml
   - 02-service.yml
-  - 03-ingress.yml
-  - 04-monitor.yml
-  - 05-secrets.yml
+  - 03-monitor.yml
