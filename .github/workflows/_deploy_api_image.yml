@@ -1,0 +1,41 @@
+name: _Deploy image
+run-name: _Deploy to ${{ inputs.ENVIRONMENT }} (${{ inputs.IMAGE_ID }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      ENVIRONMENT:
+        description: "Environment"
+        type: choice
+        options:
+          - sandbox
+          - dev1
+          - prd1
+      IMAGE_ID:
+        description: "Image ID (has to exist in ECR)"
+        type: string
+        required: true
+  workflow_call:
+    inputs:
+      ENVIRONMENT:
+        description: "Environment"
+        type: string
+        required: true
+      IMAGE_ID:
+        description: "Image ID (has to exist in ECR)"
+        type: string
+        required: true
+
+
+jobs:
+  build_and_push:
+    uses: metacore-games/github-action-deploy-to-lighthouse/.github/workflows/action.yml@main
+    secrets: inherit
+    with:
+      cluster: ${{ inputs.ENVIRONMENT }}
+      image_name: tcmetrics
+      image_revision: ${{ inputs.IMAGE_ID }}
+      ecr_name: slack-quiz
+      prefix: k8s/overlays
+      deployment_name: tcmetrics
+      deployment_namespace: tcmetrics

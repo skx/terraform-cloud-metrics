@@ -1,0 +1,27 @@
+name: Build and deploy API
+run-name: Build and deploy API to ${{ inputs.ENVIRONMENT || 'dev1' }} (${{ github.sha }})
+
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+    inputs:
+      ENVIRONMENT:
+        description: "Environment"
+        type: choice
+        options:
+          - sandbox
+          - dev1
+          - prd1
+
+jobs:
+  Build-And-Push:
+    uses: ./.github/workflows/_build_api_image.yml
+
+  Deploy:
+    needs: [Build-And-Push]
+    uses: ./.github/workflows/_deploy_api_image.yml
+    with:
+      ENVIRONMENT: ${{ inputs.ENVIRONMENT || 'dev1' }}
+      IMAGE_ID: ${{ github.sha }}

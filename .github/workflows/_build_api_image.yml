@@ -1,0 +1,14 @@
+name: _Build API image
+run-name: _Build API image (${{ github.sha }})
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build_and_push:
+    uses: metacore-games/github-action-build-push-container/.github/workflows/action.yml@v1
+    secrets: inherit
+    with:
+      dockerfile: 'Dockerfile'
+      repository: 'slack-quiz'

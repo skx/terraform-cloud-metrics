@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: tcmetrics
+  labels:
+    app: tcmetrics
+    release: kube-prometheus-stack
+  namespace: tcmetrics
+spec:
+  selector:
+    matchLabels:
+      app: tcmetrics
+  endpoints:
+    - path: "/metrics"
+      port: tcmetrics-port
+      interval: 60s

@@ -1,0 +1,24 @@
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+
+jobs:
+  check-commit-message:
+    name: Check Commit Message
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: read
+
+    steps:
+      - name: Check that commit type is set correctly in title
+        uses: metacore-games/commit-message-checker@v1.0.0
+        with:
+          pattern: '^(ci|docs|feat|fix|patch|chore):*'
+          error: 'The commit title is not using one of allowed types: ci|docs|feat|fix|patch|chore'

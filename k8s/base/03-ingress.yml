@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tcmetrics-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  namespace: tcmetrics
+
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - tcmetrics.sandbox.lh.metacore.net
+      secretName: tcmetrics-tls
+  rules:
+    - host: tcmetrics.sandbox.lh.metacore.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: tcmetrics-service
+                port:
+                  number: 8090

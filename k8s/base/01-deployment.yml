@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tcmetrics
+  labels:
+    app: tcmetrics
+  namespace: tcmetrics
+spec:
+  selector:
+    matchLabels:
+      app: tcmetrics
+  template:
+    metadata:
+      labels:
+        app: tcmetrics
+    spec:
+      containers:
+        - name: tcmetrics
+          # Specifying slack-quiz container image, overridden in pipeline
+          image:
+            tcmetrics
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8090
+              name: metrics-srv-port
+          resources:
+            limits:
+              memory: "1Gi"
+            requests:
+              memory: "700Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8090
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            failureThreshold: 5
+            successThreshold: 1
+          env:
+            - name: REDIS_PASSWORD
+              value: 'unset'
