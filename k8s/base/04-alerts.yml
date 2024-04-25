@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: tcmetrics-alerts
+  namespace: tcmetrics
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+  - name: tcMetricsAlerts
+    rules:
+    - alert: MisfiledWorkspace
+      expr: terraform_cloud_workspace_count{project="default"} > 0
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: "The default project in terraform cloud contains workspaces, they should be moved."
+        description: "The default terraform cloud project should not contain workspaces, please visit the following URL and move them https://app.terraform.io/app/metacore/projects/prj-KYvXnJYJ1FSHo2Gf"

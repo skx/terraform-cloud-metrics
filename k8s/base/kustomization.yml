@@ -7,3 +7,4 @@ resources:
   - 01-deployment.yml
   - 02-service.yml
   - 03-monitor.yml
+  - 04-alerts.yml
