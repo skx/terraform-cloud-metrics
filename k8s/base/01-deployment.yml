@@ -16,7 +16,6 @@ spec:
     spec:
       containers:
         - name: tcmetrics
-          # Specifying slack-quiz container image, overridden in pipeline
           image:
             tcmetrics
           imagePullPolicy: IfNotPresent
@@ -39,6 +38,7 @@ spec:
             successThreshold: 1
           env:
             - name: TFE_TOKEN
-              secretKeyRef:
-                name: terraform-cloud-token
-                key: TFE_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: terraform-cloud-token
+                  key: TFE_TOKEN
