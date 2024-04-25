@@ -35,7 +35,7 @@ jobs:
       cluster: ${{ inputs.ENVIRONMENT }}
       image_name: tcmetrics
       image_revision: ${{ inputs.IMAGE_ID }}
-      ecr_name: slack-quiz
+      ecr_name: tf-metrics
       prefix: k8s/overlays
       deployment_name: tcmetrics
       deployment_namespace: tcmetrics

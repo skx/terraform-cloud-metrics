@@ -11,4 +11,4 @@ jobs:
     secrets: inherit
     with:
       dockerfile: 'Dockerfile'
-      repository: 'slack-quiz'
+      repository: 'tf-metrics'
