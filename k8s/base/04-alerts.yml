@@ -15,5 +15,5 @@ spec:
       labels:
         severity: critical
       annotations:
-        summary: "The default project in terraform cloud contains workspaces, they should be moved."
-        description: "The default terraform cloud project should not contain workspaces, please visit the following URL and move them https://app.terraform.io/app/metacore/projects/prj-KYvXnJYJ1FSHo2Gf"
+        summary: "The default terraform cloud project should not contain workspaces, please visit the following URL and move them https://app.terraform.io/app/metacore/projects/prj-KYvXnJYJ1FSHo2Gf"
+        description: "The default project in terraform cloud contains workspaces, they should be moved."
